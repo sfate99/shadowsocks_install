@@ -10,10 +10,6 @@ export PATH
 #   Intro:  https://www.91yun.org/archives/2079                   #
 #=================================================================#
 
-clear
-echo
-
-echo
 
 #Current folder
 cur_dir=`pwd`
@@ -218,7 +214,7 @@ function config_shadowsocks(){
     "timeout": 120,
     "udp_timeout": 60,
     "method": "chacha20",
-    "protocol": "auth_sha1_v2_compatible",
+    "protocol": "auth_sha1_v4_compatible",
     "protocol_param": "",
     "obfs": "tls1.2_ticket_auth_compatible",
     "obfs_param": "",
@@ -262,7 +258,7 @@ function install_ss(){
         echo -e "Server IP: \033[41;37m ${IP} \033[0m"
         echo -e "Server Port: \033[41;37m ${shadowsocksport} \033[0m"
         echo -e "Password: \033[41;37m ${shadowsockspwd} \033[0m"
-        echo -e "Protocol: \033[41;37m auth_sha1_v2 \033[0m"
+        echo -e "Protocol: \033[41;37m auth_sha1_v4 \033[0m"
         echo -e "obfs: \033[41;37m tls1.2_ticket_auth \033[0m"
         echo -e "Encryption Method: \033[41;37m chacha20 \033[0m"
         echo "Welcome to visit:https://www.91yun.org/archives/2079"
@@ -278,12 +274,6 @@ function install_ss(){
     fi
 }
 
-#改成北京时间
-# function check_datetime(){
-	# rm -rf /etc/localtime
-	# ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-	# ntpdate time.windows.com
-# }
 
 # Install cleanup
 function install_cleanup(){
