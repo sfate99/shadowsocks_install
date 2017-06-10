@@ -90,6 +90,7 @@ function firewall_set(){
 
 
 function adduser(){
+	clear
     # Not support CentOS 5
     if centosversion 5; then
         echo "Not support CentOS 5, please change to CentOS 6+ or Debian 7+ or Ubuntu 12+ and try again."
@@ -107,7 +108,7 @@ function adduser(){
     # Set shadowsocks config port
     while true
     do
-    read -p "Please input port for shadowsocksR [1-65535]:"shadowsocksport
+    read -p "Please input port for shadowsocksR [1-65535]:" shadowsocksport
     expr $shadowsocksport + 0 &>/dev/null
     if [ $? -eq 0 ]; then
         if [ $shadowsocksport -ge 1 ] && [ $shadowsocksport -le 65535 ]; then
@@ -142,8 +143,11 @@ function adduser(){
 }
 
 function uninstall(){
+	bash ${ssrdir}stop.sh
 	rm -rf /etc/init.d/ssr
+	rm -rf /bin/ssr
 	rm -rf ${ssrdir}
+	echo "uninstall done!"
 }
 
 
