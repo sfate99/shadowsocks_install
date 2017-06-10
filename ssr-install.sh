@@ -87,7 +87,7 @@ else
 	fi
 fi
 
-sed -i "s/#ssrdir#/${ssrdir}/g" /etc/init.d/ssr
+sed -i "s/BIN=.*/BIN=$ssrdir/g" /etc/init.d/ssr
 
 
 chmod +x /etc/init.d/ssr
@@ -103,7 +103,7 @@ if ! wget --no-check-certificate https://raw.githubusercontent.com/91yun/shadows
 	echo "Failed to download ssr script file!"
 	exit 1
 fi
-sed -i "s/#ssrdir#/${ssrdir}/g" ${ssrdir}ssr.sh
+sed -i "s/ssrdir=.*/ssrdir=$ssrdir/g" ${ssrdir}ssr.sh
 
 
 #启动定制脚本开始添加用户
