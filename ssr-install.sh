@@ -97,8 +97,11 @@ fi
 
 sed -i "s@BIN=.*@BIN=$ssrdir@g" /etc/init.d/ssr
 
+cp /etc/init.d/ssr /bin/
+
 
 chmod +x /etc/init.d/ssr
+chmod +x /bin/ssr
 if [ "$OS" == 'CentOS' ]; then
 	chkconfig --add ssr
 	chkconfig ssr on
