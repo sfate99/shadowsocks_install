@@ -137,11 +137,52 @@ function adduser(){
     echo
     echo "Press any key to start...or Press Ctrl+C to cancel"
     char=`get_char`
+	firewall_set
 	#添加用户
 	cd ${ssrdir}
 	python mujson_mgr.py -a -p ${shadowsocksport} -k ${shadowsockspwd} -m chacha20 -O auth_sha1_v4_compatible -o tls1.2_ticket_auth_compatible
-	firewall_set
+	
 }
+
+function deluser(){
+    while true
+    do
+    read -p "Please input port which you want to delete:" shadowsocksport
+    expr $shadowsocksport + 0 &>/dev/null
+    if [ $? -eq 0 ]; then
+        if [ $shadowsocksport -ge 1 ] && [ $shadowsocksport -le 65535 ]; then
+            echo
+            echo "---------------------------"
+            echo "port = $shadowsocksport"
+            echo "---------------------------"
+            echo
+            break
+        else
+            echo "Input error! Please input correct numbers."
+        fi
+    else
+        echo "Input error! Please input correct numbers."
+    fi
+    done
+    get_char(){
+        SAVEDSTTY=`stty -g`
+        stty -echo
+        stty cbreak
+        dd if=/dev/tty bs=1 count=1 2> /dev/null
+        stty -raw
+        stty echo
+        stty $SAVEDSTTY
+    }
+    echo
+    echo "Press any key to start...or Press Ctrl+C to cancel"
+    char=`get_char`
+	#添加用户
+	cd ${ssrdir}
+	python mujson_mgr.py -d -p ${shadowsocksport}
+	
+
+}
+
 
 function uninstall(){
 	bash ${ssrdir}stop.sh
@@ -156,6 +197,9 @@ case "$1" in
 'adduser')
     adduser
     ;;
+'deluser')
+    deluser
+    ;;	
 'uninstall')
     uninstall
     RETVAL=$?
