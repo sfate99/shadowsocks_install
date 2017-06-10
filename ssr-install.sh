@@ -80,7 +80,8 @@ cd ${ssrdir}
 bash setup_cymysql.sh
 bash initcfg.sh
 sed -i "s/'sspanelv2'/'mudbjson'/g" ${ssrdir}userapiconfig.py
-
+myip=`curl myip.ipip.net | awk -F "：" '{print $2}' | awk '{print $1}'`
+sed -i "s/127.0.0.1/$myip/g" ${ssrdir}userapiconfig.py
 
 #下载服务文件，添加到系统服务，并随机启动
 if [ "$OS" == 'CentOS' ]; then

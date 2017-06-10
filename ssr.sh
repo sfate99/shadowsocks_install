@@ -138,7 +138,8 @@ function adduser(){
     echo "Press any key to start...or Press Ctrl+C to cancel"
     char=`get_char`
 	#添加用户
-	python ${ssrdir}mujson_mgr.py -a -p ${shadowsocksport} -k ${shadowsockspwd} -m chacha20 -O auth_sha1_v4_compatible -o tls1.2_ticket_auth_compatible
+	cd ${ssrdir}
+	python mujson_mgr.py -a -p ${shadowsocksport} -k ${shadowsockspwd} -m chacha20 -O auth_sha1_v4_compatible -o tls1.2_ticket_auth_compatible
 	firewall_set
 }
 
