@@ -14,7 +14,7 @@
 # Author: www.91yun.org
 
 name=ShadowsocksR
-BIN=/home/ssr/
+BIN=#ssrdir#
 conf=/etc/shadowsocks.json
 
 start(){
