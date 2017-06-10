@@ -4,6 +4,7 @@ export PATH
 
 #安装目录
 ssrdir=/home/ssr/
+mkdir -p ${ssrdir}
 
 #判断是否root权限
 function rootness(){
@@ -50,9 +51,16 @@ function centosversion(){
     fi        
 }
 
+#安装依赖库
+if [ "$OS" == 'CentOS' ]; then
+	yum install -y wget unzip openssl-devel gcc swig python python-devel python-setuptools autoconf libtool libevent git ntpdate
+	yum install -y m2crypto automake make curl curl-devel zlib-devel perl perl-devel cpio expat-devel gettext-devel
+else
+	apt-get -y update
+	apt-get -y install python python-dev python-pip python-m2crypto curl wget unzip gcc swig automake make perl cpio build-essential git ntpdate
+fi
 
 #安装chacha20的依赖库
-yum install m2crypto gcc -y
 wget -N --no-check-certificate https://download.libsodium.org/libsodium/releases/libsodium-1.0.12.tar.gz
 tar zfvx libsodium-1.0.12.tar.gz
 cd libsodium-1.0.12
