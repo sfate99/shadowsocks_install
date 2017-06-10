@@ -41,6 +41,11 @@ deluser(){
 	bash ${BIN}ssr.sh deluser
 }
 
+update(){
+	bash ${BIN}ssr.sh update
+}
+
+
 uninstall(){
 	bash ${BIN}ssr.sh uninstall
 }
@@ -61,6 +66,9 @@ case "$1" in
 'deluser')
     deluser
     ;;
+'update')
+    update
+    ;;	
 'uninstall')
     uninstall
     ;;
@@ -70,7 +78,7 @@ case "$1" in
     RETVAL=$?
     ;;
 *)
-    echo "Usage: $0 { start | stop | restart | status | adduser | deluser | uninstall }"
+    echo "Usage: $0 { start | stop | restart | status | adduser | deluser | update | uninstall }"
     RETVAL=1
     ;;
 esac

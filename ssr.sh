@@ -183,6 +183,11 @@ function deluser(){
 
 }
 
+function update(){
+	cd ${ssrdir}
+	git pull
+}
+
 
 function uninstall(){
 	bash ${ssrdir}stop.sh
@@ -199,6 +204,9 @@ case "$1" in
     ;;
 'deluser')
     deluser
+    ;;	
+'update')
+    update
     ;;	
 'uninstall')
     uninstall
