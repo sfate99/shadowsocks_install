@@ -70,7 +70,7 @@ else
 fi
 
 #安装chacha20的依赖库
-wget -N --no-check-certificate https://download.libsodium.org/libsodium/releases/libsodium-1.0.12.tar.gz
+wget -N --no-check-certificate https://raw.githubusercontent.com/91yun/shadowsocks_install/master/libsodium-1.0.12.tar.gz
 tar zfvx libsodium-1.0.12.tar.gz
 cd libsodium-1.0.12
 ./configure
